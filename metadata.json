@@ -1,5 +1,5 @@
 {
-  "name": "Drift Car Game",
+  "name": "DriftCar by KevinIbra",
   "description": "A highly-polished, playable Drift Car game featuring realistic drifting physics, track selector, visual indicators, and scoring system.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]

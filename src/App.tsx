@@ -133,7 +133,7 @@ export default function App() {
           <Car className="animate-pulse" size={44} />
         </div>
         <h1 className="text-3xl font-black tracking-tighter text-white uppercase italic mb-2">
-          DRIFT<span className="text-[#ff0055]">CAR</span> <span className="text-[10px] font-mono font-bold py-0.5 px-2 bg-[#ff0055]/20 text-[#ff0055] rounded ml-1.5 border border-[#ff0055]/30">PRO R-SPEC</span>
+          DRIFT<span className="text-[#ff0055]">CAR</span> <span className="text-base font-sans font-light text-gray-400 lowercase italic ml-1">by KevinIbra</span>
         </h1>
         <p className="text-[10px] text-[#ff6600] font-mono tracking-widest uppercase mb-8">Live Simulation Telemetry System</p>
         
@@ -162,7 +162,7 @@ export default function App() {
             </div>
             <div>
               <h1 className="text-xl font-black tracking-tighter font-sans text-white uppercase italic">
-                DRIFT<span className="text-[#ff0055]">CAR</span> <span className="text-[10px] font-mono font-bold py-0.5 px-2 bg-[#ff0055]/20 text-[#ff0055] rounded ml-1.5 border border-[#ff0055]/30">PRO R-SPEC</span>
+                DRIFT<span className="text-[#ff0055]">CAR</span> <span className="text-xs font-sans font-light text-gray-400 lowercase italic ml-1 select-all hover:text-white transition-colors">by KevinIbra</span>
               </h1>
               <p className="text-[10px] text-gray-400 font-mono tracking-widest uppercase">Live Simulation Telemetry System</p>
             </div>
