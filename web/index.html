@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcade Drift Car Game</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Dashboard Header -->
+        <header>
+            <div class="logo">DRIFT<span>CAR</span></div>
+            <div class="controls-guide">
+                Controls: WASD / Arrows | SPACE = Handbrake
+            </div>
+        </header>
+
+        <!-- Main Display Canvas -->
+        <div class="canvas-wrapper">
+            <canvas id="gameCanvas" width="1000" height="600"></canvas>
+            
+            <!-- Dynamic Drift Point Overlay -->
+            <div id="drift-alert" class="hidden">
+                <div class="alert-title">DRIFT SLIDE</div>
+                <div id="drift-count">0 pts</div>
+                <div id="drift-multiplier">x1</div>
+            </div>
+
+            <!-- Start Game Modal Screen -->
+            <div id="menu-screen" class="overlay-screen">
+                <div class="modal-card">
+                    <h1>ARCADE DRIFT</h1>
+                    <p>Smash throttle, countersteer into curves, and chain massive drifts.</p>
+                    
+                    <div class="select-group">
+                        <label>Select Car Style:</label>
+                        <div class="car-selector">
+                            <button class="color-btn active" data-color="#3b82f6" style="background-color: #3b82f6;"></button>
+                            <button class="color-btn" data-color="#f43f5e" style="background-color: #f43f5e;"></button>
+                            <button class="color-btn" data-color="#10b981" style="background-color: #10b981;"></button>
+                            <button class="color-btn" data-color="#f59e0b" style="background-color: #f59e0b;"></button>
+                        </div>
+                    </div>
+
+                    <div class="select-group">
+                        <label>Handling Grid:</label>
+                        <select id="handling-select">
+                            <option value="arcade">Easy Arcade (Grip Control)</option>
+                            <option value="sport" selected>Sport Suspension (Slippery)</option>
+                            <option value="hardcore">Pro Simulator (Low Traction)</option>
+                        </select>
+                    </div>
+
+                    <button id="start-btn" class="primary-btn">START GAME</button>
+                </div>
+            </div>
+
+            <!-- Game Over Screen -->
+            <div id="game-over-screen" class="overlay-screen hidden">
+                <div class="modal-card select-none">
+                    <h2 class="failed-title">VEHICLE SCRAPED!</h2>
+                    <p>You crashed too hard into the barrier boundaries.</p>
+                    <div class="score-summary">
+                        <div>Accumulated Points: <span id="final-score">0</span> pts</div>
+                    </div>
+                    <button id="restart-btn" class="primary-btn">TRY AGAIN</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- HUD Panel Footer Indicators -->
+        <div class="hud-panel">
+            <div class="hud-box">
+                <span class="hud-lbl">CURRENT SCORE</span>
+                <span id="score-val" class="hud-val">000000</span>
+            </div>
+            
+            <div class="hud-box highlight">
+                <span class="hud-lbl">DRIFTING INTENSITY</span>
+                <span id="multiplier-val" class="hud-val">x1</span>
+            </div>
+
+            <div class="tachometer-box">
+                <div class="gauge-stats">
+                    <div>SPEED: <span id="speed-val">0</span> km/h</div>
+                    <div class="rpm-lbl">RPM: <span id="rpm-val">1000</span></div>
+                </div>
+                <div class="gauge-bar-bg">
+                    <div id="rpm-bar" class="gauge-bar"></div>
+                </div>
+            </div>
+
+            <div class="hud-box">
+                <span class="hud-lbl">GEAR</span>
+                <span id="gear-val" class="hud-val font-mono">1</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

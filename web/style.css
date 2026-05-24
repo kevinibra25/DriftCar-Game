@@ -1,0 +1,362 @@
+/* Reset & General Setup */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #070a0f;
+    color: #f1f5f9;
+    font-family: 'Space Grotesk', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* Base Layout Container */
+#game-container {
+    width: 100%;
+    max-width: 1020px;
+    background-color: #0f172a;
+    border: 1px solid #1e293b;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(59, 130, 246, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Header styled with negative space */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #1e293b;
+    padding-bottom: 12px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    color: #f8fafc;
+}
+
+.logo span {
+    color: #3b82f6;
+    text-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+}
+
+.controls-guide {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #64748b;
+    background: #020617;
+    padding: 5px 12px;
+    border-radius: 8px;
+    border: 1px solid #1e293b;
+}
+
+/* Canvas screen packaging */
+.canvas-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1000 / 600;
+    background-color: #05070a;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #1e293b;
+}
+
+#gameCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* HUD Overlay */
+#drift-alert {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    pointer-events: none;
+    background: rgba(15, 23, 42, 0.4);
+    padding: 15px 30px;
+    border-radius: 16px;
+    backdrop-filter: blur(4px);
+    transition: opacity 0.15s ease-out;
+    animation: driftPulse 1s infinite alternate;
+}
+
+@keyframes driftPulse {
+    from { transform: translate(-50%, -50%) scale(1.0); }
+    to { transform: translate(-50%, -50%) scale(1.04); }
+}
+
+.alert-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #f43f5e;
+}
+
+#drift-count {
+    font-size: 38px;
+    font-weight: 800;
+    color: #f59e0b;
+    text-shadow: 0 0 12px rgba(245, 158, 11, 0.6);
+}
+
+#drift-multiplier {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: #10b981;
+}
+
+/* Overlay Screen modals */
+.overlay-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(9, 12, 22, 0.88);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.modal-card {
+    background-color: #0d121f;
+    border: 1px solid #1e293b;
+    border-radius: 16px;
+    padding: 30px;
+    width: 90%;
+    max-width: 440px;
+    text-align: center;
+    box-shadow: 0 0 25px rgba(59, 130, 246, 0.12);
+}
+
+.modal-card h1 {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    margin-bottom: 10px;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+}
+
+.modal-card h2.failed-title {
+    font-size: 28px;
+    color: #f43f5e;
+    margin-bottom: 8px;
+    text-shadow: 0 0 10px rgba(244, 63, 94, 0.3);
+}
+
+.modal-card p {
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 22px;
+    line-height: 1.5;
+}
+
+/* Form Settings elements */
+.select-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    margin-bottom: 20px;
+}
+
+.select-group label {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #828fa3;
+    letter-spacing: 1px;
+}
+
+.car-selector {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.color-btn {
+    width: 32px;
+    height: 32px;
+    border: 3px solid transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+}
+
+.color-btn:hover {
+    transform: scale(1.1);
+}
+
+.color-btn.active {
+    border-color: #f8fafc;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+#handling-select {
+    width: 100%;
+    background-color: #020617;
+    color: #f1f5f9;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid #1e293b;
+    font-family: inherit;
+    font-size: 13px;
+    outline: none;
+    cursor: pointer;
+}
+
+#handling-select:focus {
+    border-color: #3b82f6;
+}
+
+.primary-btn {
+    width: 100%;
+    background-color: #3b82f6;
+    color: #fff;
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.15s, transform 0.1s;
+    font-size: 14px;
+}
+
+.primary-btn:hover {
+    background-color: #2563eb;
+    transform: translateY(-1px);
+}
+
+.primary-btn:active {
+    transform: translateY(1px);
+}
+
+.score-summary {
+    background-color: #020617;
+    border: 1px solid #1e293b;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    font-size: 14px;
+}
+
+.score-summary span {
+    font-weight: 700;
+    color: #10b981;
+}
+
+/* Footer HUD telemetry */
+.hud-panel {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.hud-box {
+    background-color: #090d16;
+    border: 1px solid #1e293b;
+    border-radius: 12px;
+    padding: 10px 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hud-box.highlight {
+    border-color: #f59e0b;
+    background: rgba(245, 158, 11, 0.02);
+}
+
+.hud-lbl {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #475569;
+    text-transform: uppercase;
+}
+
+.hud-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px;
+    font-weight: 700;
+    color: #f1f5f9;
+}
+
+.hud-box.highlight .hud-val {
+    color: #f59e0b;
+}
+
+.tachometer-box {
+    grid-column: span 1;
+    background-color: #090d16;
+    border: 1px solid #1e293b;
+    border-radius: 12px;
+    padding: 10px 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.gauge-stats {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    margin-bottom: 6px;
+    font-weight: 700;
+}
+
+.rpm-lbl {
+    font-family: 'JetBrains Mono', monospace;
+    color: #eab308;
+}
+
+.gauge-bar-bg {
+    width: 100%;
+    height: 6px;
+    background-color: #1e293b;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.gauge-bar {
+    width: 15%;
+    height: 100%;
+    background-color: #10b981;
+    border-radius: 3px;
+    transition: width 0.08s ease-out;
+}
+
+/* Responsiveness adjustments */
+@media (max-width: 640px) {
+    #game-container {
+        padding: 12px;
+        gap: 10px;
+    }
+    .hud-panel {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .tachometer-box {
+        grid-column: span 2;
+    }
+}
